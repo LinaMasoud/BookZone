@@ -1,0 +1,72 @@
+{{% extends 'bookZone/base.html' %}
+{% block title %} | Book Details{% endblock %}
+
+{% block categs %}
+  {% for uCat in uCategs %}
+    <li><a href="/bookZone/category/{{ uCat.id }}">{{ uCat.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block auths %}
+  {% for uAuth in uAuths %}
+    <li><a href="/bookZone/authors/{{ uAuth.id }}">{{ uAuth.name }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block boks1 %}
+  {% for uRBook in uRBooks %}
+    <li><a href="/bookZone/book/{{ uRBook.id }}">{{ uRBook.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+{% block boks2 %}
+  {% for uWBook in uWBooks %}
+    <li><a href="/bookZone/book/{{ uWBook.id }}">{{ uWBook.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block userName %}{{ userName }}{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+  {% for d in bookDetails%}
+      <div class="col-sm-3 col-sm-offset-1 text-center">
+      <img class="img" src="{{ d.pic }}">
+      <h4><a>{{ d.title }}</a></h4>
+      </div>
+      <div class="col-sm-7 col-sm-offset-1 text-left">
+      <h5>Published at: {{ d.published_at }}</h5>
+      <h5>Author: {{ d.author_id }}</h5>
+      <h5>Categories: </h5>
+      <ul>
+        {% for c in categories %}
+        <li>{{ c }}</li>
+        {% endfor %}
+      </ul>     
+      <p>Description: {{ d.desciption }}</p>
+      {% if readStatus == "yes" %}
+      <a href="noread/{{ d.id }}" class="btn btn-default">&#x2718; Not Read</a>
+      {% else %}
+      <a href="read/{{ d.id }}" class="btn btn-primary">&#x2714; Read</a>
+      {% endif %}
+      {% if wishStatus == "yes" %}
+      <a href="nowishlist/{{ d.id }}" class="btn btn-default">&#x2012; Remove From Wish List</a>
+      {% else %}
+      <a href="wishlist/{{ d.id }}" class="btn btn-primary">&#x271A; Add To Wish List</a>
+      {% endif %}
+      <input type="hidden" id="id" value={{d.id}}>
+      
+      <h4>Rate:</h4>
+      <input type="hidden" id="rate" value={{rate.rate}}>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+          </fieldset>
+      </div>
+  {% endfor %}
+   </div>
+ </div>
+{% endblock %}

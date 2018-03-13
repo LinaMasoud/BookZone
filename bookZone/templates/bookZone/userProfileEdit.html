@@ -1,0 +1,60 @@
+{% extends 'bookZone/base.html' %}
+{% load static %}
+{% block title %} | Profile{% endblock %}
+{% block categs %}
+  {% for uCat in uCategs %}
+    <li><a href="/bookZone/category/{{ uCat.id }}">{{ uCat.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block auths %}
+  {% for uAuth in uAuths %}
+    <li><a href="/bookZone/authors/{{ uAuth.id }}">{{ uAuth.name }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block boks1 %}
+  {% for uRBook in uRBooks %}
+    <li><a href="/bookZone/book/{{ uRBook.id }}">{{ uRBook.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+{% block boks2 %}
+  {% for uWBook in uWBooks %}
+    <li><a href="/bookZone/book/{{ uWBook.id }}">{{ uWBook.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block userName %}{{ userName }}{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="row text-center">
+        <div class="col-sm-10 col-sm-offset-1">
+          <table class="table text-center">
+            <tr>
+              <th>User Name:</th>
+              <td><input type="text" id="username" value={{user.username}}></td>
+            </tr>
+            <tr>
+              <th>First Name:</th>
+              <td><input type="text" id="firstname" value={{user.first_name}}></td>
+            </tr>
+            <tr>
+              <th>Last Name:</th>
+              <td><input type="text" id="lastname" value={{user.last_name}}></td>
+            </tr> 
+            <tr>
+              <th>Email:</th>
+              <td><input type="text" id="email" value={{user.email}}></td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-center">
+                <button id="saveChanges" class="btn btn-success">Save Changes</button>
+                <a href="pass" id="resetPassword" class="btn btn-warning">Reset Password</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

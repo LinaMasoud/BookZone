@@ -1,0 +1,76 @@
+{% extends 'bookZone/base.html' %}
+{% block title %} | Authors{% endblock %}
+
+{% block categs %}
+  {% for uCat in uCategs %}
+    <li><a href="/bookZone/category/{{ uCat.id }}">{{ uCat.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block auths %}
+  {% for uAuth in uAuths %}
+    <li><a href="/bookZone/authors/{{ uAuth.id }}">{{ uAuth.name }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block boks1 %}
+  {% for uRBook in uRBooks %}
+    <li><a href="/bookZone/book/{{ uRBook.id }}">{{ uRBook.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+{% block boks2 %}
+  {% for uWBook in uWBooks %}
+    <li><a href="/bookZone/book/{{ uWBook.id }}">{{ uWBook.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block userName %}{{ userName }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row text-center">
+        {% if one == "one" %}
+          {% for author in authors %}
+            <div class="col-sm-3 col-sm-offset-1 text-center">
+              <img class="img" src="{{ author.pic }}">
+              <h4><a>{{ author.name }}</a></h4>
+            </div>
+            <div class="col-sm-7 col-sm-offset-1 text-left">
+              <h4>Born in: {{ author.country }}</h4>
+              <p>Bio: {{ author.bio }}</p>
+              <h5>Born at: {{ author.born_at }}</h5>
+              <h5>Died at: {{ author.died_at }}</h5>
+              <h5>Number of followers: {{ author.users.all|length }}</h5>
+              <h5>List of Books: </h5>
+              <ul>
+              {% for book in authorBook %}
+                <li>{{ book.title }}</li>             
+              {% endfor %}
+              </ul>
+              {% if author.isFollowed%}
+                <a href="unfollow/{{ author.id }}" class="btn btn-default">&#x2718; Un Follow</a>
+              {% else %}
+                <a href="follow/{{ author.id }}" class="btn btn-primary">&#x2714; Follow</a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% elif one == "many" %}
+          {% for author in authors %}
+          <a href="authors/{{ author.id }}">
+          <div class="col-sm-3 col-sm-offset-1 text-center">
+            <img class="img" src="{{ author.pic }}">
+            <h4>{{ author.name }}</h4>
+            {% if author.isFollowed%}
+              <span class="label label-success">&#x2714; Followed</span>
+            {% else %}
+              <span class="label label-warning">&#x2718; Not Followed</span>
+            {% endif %}
+          </div>
+          </a>
+          {% endfor %}
+        {% else %}
+          <h2> No Authors to view</h2>
+        {% endif %}
+    </div>
+  </div>
+{% endblock %}

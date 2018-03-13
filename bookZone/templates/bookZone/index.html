@@ -1,0 +1,98 @@
+{% extends 'bookZone/base.html' %}
+{% load static %}
+{% block title %} | Home{% endblock %}
+
+{% block categs %}
+	{% for uCat in uCategs %}
+		<li><a href="/bookZone/category/{{ uCat.id }}">{{ uCat.title }}</a></li>
+	{% endfor %}
+{% endblock %}
+
+{% block auths %}
+	{% for uAuth in uAuths %}
+		<li><a href="/bookZone/authors/{{ uAuth.id }}">{{ uAuth.name }}</a></li>
+	{% endfor %}
+{% endblock %}
+
+{% block boks1 %}
+  {% for uRBook in uRBooks %}
+    <li><a href="/bookZone/book/{{ uRBook.id }}">{{ uRBook.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+{% block boks2 %}
+  {% for uWBook in uWBooks %}
+    <li><a href="/bookZone/book/{{ uWBook.id }}">{{ uWBook.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block userName %}{{ userName }}{% endblock %}
+
+{% block content %}
+
+<div id="mySidenav" class="sidenav col-md-3">
+	{% if topRated %}
+		<span class="gold"></span><p>Top Rated Books</p>
+		<ul class='topR'>
+		{% for topR in topRated %}
+			<li>
+				<a href="/bookZone/book/{{ topR.id }}">{{ topR.title }}</a>
+				<br><sub>Rated as {{ topR.rate }} stars</sub><br>
+			</li>
+		{% endfor %}
+		</ul>
+		<p class="clearfix"></p>
+	{% endif %}
+	{% if topFollowed %}
+		<span class="gold"></span><p>Top Followed Authors</p>
+		<ul class='topR'>
+		{% for topF in topFollowed %}
+			<li>
+				<a href="/bookZone/authors/{{ topF.id }}">{{ topF.name }} </a>
+				<br><sub>Followed by {{ topF.numFollowers }} users</sub><br>
+			</li>
+		{% endfor %}
+		</ul>
+		<p class="clearfix"></p>
+	{% endif %}
+	{% if topFavourited %}
+		<span class="gold"></span><p>Top Favourited Categories</p>
+		<ul class='topR'>
+		{% for topF in topFavourited %}
+			<li>
+				<a href="/bookZone/category/{{ topF.id }}">{{ topF.title }} </a>
+				<br><sub>Favourited by {{ topF.numFavs }} users</sub><br>
+			</li>
+		{% endfor %}
+		</ul>
+		<p class="clearfix"></p>
+	{% endif %}
+</div>
+<div class="container col-md-7 text-center">
+	<h2><u>Latest Publishes:</u></h2>
+	{% for book in latestPub %}
+		<a href="/bookZone/book/{{ book.id }}">
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100 thumbnail">
+            <img class="card-img-top " src="{{ book.pic }}" alt="">
+            <div class="card-body">
+              <h4 class="card-title">{{ book.title }}</h4>
+              <p>{{ wishlist }}</p>
+              {% if book.isRead %}
+                <span class="label label-success">&#x2714; Read</span>
+              {% else %}
+                <span class="label label-warning">&#x2718; Not Read</span>
+              {% endif %}
+              {% if book.isWish %}
+                <span class="label label-success">&#x2714; Wished</span>
+              {% else %}
+                <span class="label label-warning">&#x2718; Not Wished</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        </a>
+	{% endfor %}
+	
+</div>
+
+{% endblock %}

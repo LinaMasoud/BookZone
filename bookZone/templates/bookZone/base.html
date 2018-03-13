@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>BookZone{% block title %} | Welcome{% endblock %}</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'bookZone/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'bookZone/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bookZone/3-col-portfolio.css' %}" >
+    <link rel="stylesheet" href="{% static 'bookZone/main.css' %}">
+  </head>
+  <body>
+  <header>
+
+  <nav class="navbar open" id="topNav">
+    <div class="container" style="padding: 0px;">
+      <div class="navbar-header" style="padding: 0px;">
+        <a class="navbar-brand" href="/bookZone/" style="padding: 0px;">
+          <img src="{% static 'bookZone/Bookzonelogo.png' %}" style="height: 85px;width:100% " />
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right" style="padding: 18px;">
+        <li><a href="/bookZone/">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Categories<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/bookZone/category">All</a></li>
+            <li>
+              <strong>Favourite Categories</strong>
+              <ul class="your">
+                {% block categs %}{% endblock %}
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Authors<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/bookZone/authors">All</a></li>
+            <li>
+              <strong>Followed Authors</strong>
+              <ul class="your">
+                {% block auths %}{% endblock %}
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Books<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/bookZone/book">All</a></li>
+            <li>
+              <strong>Read Books</strong>
+              <ul class="your">
+                {% block boks1 %}{% endblock %}
+              </ul>
+            </li>
+            <li>
+              <strong>Wishlist</strong>
+              <ul class="your">
+                {% block boks2 %}{% endblock %}
+              </ul>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <img src="{% static 'bookZone/user.png' %}" style="width: 20px;">
+          </a>
+          <ul class="dropdown-menu">
+            <li><a>{% block userName %}{% endblock %}</a></li>
+            <li><a href="/bookZone/user/">Profile</a></li>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+        </li>
+
+        <form class="navbar-form navbar-right serText" action="/bookZone/search">
+          <input type="text" placeholder="Search" class="search serText" style="border-radius: 5%;" required name="q" >
+          <input type="submit" value="Search" class="search btn btn-default">
+        </form>
+      </ul>
+
+      </div>
+  </nav>
+  </header>
+
+    <!--  -->
+      {% block content %}
+      {% endblock %}
+    
+
+
+    <!-- <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy;BookZone 2018</p>
+      </div>
+    </footer> -->
+    <script src="{% static 'bookZone/jquery.min.js' %}"></script>
+    <script src="{% static 'bookZone/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bookZone/wow.min.js' %}"></script>
+    <script src="{% static 'bookZone/main.js' %}"></script>
+  </body>
+</html>

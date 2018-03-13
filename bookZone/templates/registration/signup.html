@@ -1,0 +1,37 @@
+{% load static %}
+
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <title>BookZone | Login</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{% static 'bookZone/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'bookZone/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bookZone/main.css' %}">
+
+</head>
+
+<body>
+<div id="signup" class="modal">
+  <form class="modal-content animate"  method="post">
+    <div class="container" style="width:auto !important">
+      <h1>BookZone Sign Up</h1>
+      <p style="color:black">Please fill in this form to create an account.</p>
+      <hr/>
+	    {% csrf_token %}
+	    {{ form.as_p }}
+      <div class="clearfix">
+        <button type="submit" class="btn btn-secondary btn-lg scroll">Sign Up</button>
+        <a href="../" class="btn btn-secondary btn-lg scroll cancelbtn">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+	<script src="{% static 'bookZone/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'bookZone/wow.min.js' %}"></script>
+    <script src="{% static 'bookZone/main.js' %}"></script>
+</body>
+</html>
+
+

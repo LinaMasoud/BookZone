@@ -1,0 +1,64 @@
+{% load static %}
+
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <title>BookZone | Welcome</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{% static 'bookZone/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'bookZone/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bookZone/main.css' %}">
+
+  <style type="text/css">
+    #headInfo{
+      margin-bottom: 12% !important;
+      -webkit-text-stroke: 1px black;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<header style="background: url({% static 'bookZone/cropped-library-4.jpg' %}) no-repeat center center;height:100vh;margin-bottom: 0px;"">
+
+<div style="background-color:rgba(255,255,255,0.5);">
+  <div class="container">
+    <div class="row" style="height: 100vh">
+      <div class="col-xs-6">
+        <a href="/bookZone/"><img src="{% static 'bookZone/Bookzonelogo.png' %}" alt="Logo"></a>
+      </div>
+    </div>
+
+    <div class="row header-info" id="headInfo">
+      <div class="col-sm-10 col-sm-offset-1 text-center">
+        <h1 class="wow fadeIn" style="visibility: visible; animation-name: fadeIn;">BookZone</h1>
+        <br />
+        <p class="lead wow fadeIn" data-wow-delay="0.5s">A Leading web BookStore</p>
+        <br />
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+            <div class="row">
+              <div class="col-xs-6 text-right wow fadeInUp" data-wow-delay="1s">
+                <a href="login" class="btn btn-primary btn-lg scroll">Login</a>
+              </div>
+              <div class="col-xs-6 text-left wow fadeInUp" data-wow-delay="1.4s">
+                <a href="signup" class="btn btn-secondary btn-lg scroll">Sign Up</a>
+              </div>
+            </div><!--End Button Row-->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+<script src="{% static 'bookZone/jquery.min.js' %}"></script>
+<script src="{% static 'bookZone/wow.min.js' %}"></script>
+<script src="{% static 'bookZone/main.js' %}"></script>
+
+</body>
+</html>

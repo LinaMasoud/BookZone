@@ -1,0 +1,24 @@
+{% extends 'bookZone/base.html' %}
+{% load static %}
+{% block title %} | Login{% endblock %}
+
+{% block content %}
+  <div id="login" class="modal">
+      <form class="modal-content animate" method="post">
+        <div class="imgcontainer">
+          <img src="{% static 'bookZone/user.png' %}" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+        {% csrf_token %}
+        {{ form.as_p }}
+        </div>
+
+        <div class="container">
+          <button type="submit" class="btn btn-primary btn-lg scroll">Login</button>
+          <a href="../" class="btn btn-secondary btn-lg scroll cancelbtn">Cancel</a>
+        </div>
+      </form>
+    </div>
+{% endblock %}
+

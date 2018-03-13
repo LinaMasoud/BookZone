@@ -1,0 +1,61 @@
+{% extends 'bookZone/base.html' %}
+{% block title %} | Books{% endblock %}
+
+{% block categs %}
+  {% for uCat in uCategs %}
+    <li><a href="/bookZone/category/{{ uCat.id }}">{{ uCat.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block auths %}
+  {% for uAuth in uAuths %}
+    <li><a href="/bookZone/authors/{{ uAuth.id }}">{{ uAuth.name }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block boks1 %}
+  {% for uRBook in uRBooks %}
+    <li><a href="/bookZone/book/{{ uRBook.id }}">{{ uRBook.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+{% block boks2 %}
+  {% for uWBook in uWBooks %}
+    <li><a href="/bookZone/book/{{ uWBook.id }}">{{ uWBook.title }}</a></li>
+  {% endfor %}
+{% endblock %}
+
+{% block userName %}{{ userName }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 text-center">
+        {% for book in books %}
+        <a href="/bookZone/book/{{ book.id }}">
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+          <div class="card h-100 thumbnail">
+            <img class="card-img-top " src="{{ book.pic }}" alt="">
+            <div class="card-body">
+              <h4 class="card-title">{{ book.title }}</h4>
+              <p>{{ wishlist }}</p>
+              {% if book.isRead %}
+                <span class="label label-success">&#x2714; Read</span>
+              {% else %}
+                <span class="label label-warning">&#x2718; Not Read</span>
+              {% endif %}
+              {% if book.isWish %}
+                <span class="label label-success">&#x2714; Wished</span>
+              {% else %}
+                <span class="label label-warning">&#x2718; Not Wished</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        </a>
+        {% empty %}
+        <h3> No Books Saved Yet</h3>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
